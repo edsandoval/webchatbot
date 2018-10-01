@@ -25,9 +25,13 @@ export class MessageFormComponent implements OnInit {
     this.messages.push(this.message);
 
     this.rBotService.getResponse(this.message.content).subscribe(res => {
-      this.messages.push(
-        new Message(res.text, 'assets/images/bot.png', new Date())
-      );
+      const rJson: any[] = Array.of(res.text);
+      for (let i = 0; i < rJson.length; i++) {
+        console.log('Resp: ' + rJson[i]);
+        this.messages.push(
+          new Message(rJson[i], 'assets/images/bot.png', new Date())
+        );
+      }
     });
 
     this.message = new Message('', 'assets/images/user.png');
