@@ -1,5 +1,13 @@
-.chatlist{
+.scroll-container {
+  position: relative;
+  min-height: 0;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.scrollable-content {
   height: 400px;
-  border: solid 1px;
-  border-radius: 20;
+  padding-left: 0px;
+  padding-right: 1px;
+  margin: 0;
 }

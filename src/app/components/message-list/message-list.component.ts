@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, ViewChildren, QueryList, ElementRef, ChangeDetectorRef } from '@angular/core';
 
-import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 import { Message } from '../../models';
 import { MessageItemComponent } from '../message-item/message-item.component';
+import { PerfectScrollbarDirective, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 @Component({
   selector: 'message-list',
@@ -18,28 +18,19 @@ export class MessageListComponent implements OnInit, AfterViewInit {
   @ViewChild('chatlist', { read: ElementRef }) chatList: ElementRef;
   @ViewChildren(MessageItemComponent, { read: ElementRef } ) chatItems: QueryList<MessageItemComponent>;
 
-  constructor(private mScrollbarService: MalihuScrollbarService,
-    private changeDetectorRef: ChangeDetectorRef) { }
+  public config: PerfectScrollbarConfigInterface = {};
+  @ViewChild(PerfectScrollbarDirective) directiveScroll: PerfectScrollbarDirective;
+
+  constructor() { }
 
   ngAfterViewInit() {
     this.chatItems.changes.subscribe(elements => {
-      this.scrollToBottom();
+      this.onScrollToBottom();
     });
-    this.mScrollbarService.initScrollbar('#chatlist',
-      { axis: 'y',
-        theme: 'inset-dark',
-        scrollButtons: { enable: true }, advanced: { autoExpandHorizontalScroll: true },
-        scrollbarPosition: 'outside'
-      });
   }
 
-  // TODO: Metodo scroll to Botton no funciona!!!
-  private scrollToBottom(): void {
-    const scrollToParameterOptions = <MCustomScrollbar.ScrollToParameterOptions> {
-      scrollEasing: 'easeOut',
-    };
-    this.mScrollbarService.scrollTo('#chatlist', 'last', scrollToParameterOptions);
-    this.mScrollbarService.update('#chatlist');
+  onScrollToBottom() {
+    this.directiveScroll.scrollToBottom();
   }
 
   ngOnInit() {

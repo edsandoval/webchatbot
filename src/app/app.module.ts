@@ -6,7 +6,13 @@ import { AppComponent } from './app.component';
 import { DialogflowService, RasaService } from '@app/services';
 import { MessageListComponent, MessageFormComponent, MessageItemComponent } from '@app/components'
 import { RBotService } from './services/rbot.service';
-import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -19,11 +25,15 @@ import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MalihuScrollbarModule.forRoot(),
+    PerfectScrollbarModule
   ],
   providers: [
     DialogflowService,
-    RBotService
+    RBotService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })

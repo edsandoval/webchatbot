@@ -1,5 +1,7 @@
-<div id="chatlist" class="chatlist" #chatlist>
-  <ul class="list-group">
-    <message-item *ngFor="let msg of messages" [message]="msg"></message-item>
-  </ul>
+<div class="scroll-container ps" [perfectScrollbar]="config" >
+  <div class="chatlist scrollable-content" #chatlist>
+    <ul class="list-group">
+      <message-item *ngFor="let msg of messages" [message]="msg"></message-item>
+    </ul>
+  </div>
 </div>
