@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class RBotService {
-  // Identificador del bot, tiene que estar dado de alta en el middletier.
-  private BOT_ID = '5bb55dc4bb6d091bb4de6888';
+  // Identificador del channel, tiene que estar dado de alta en el middletier.
+  private CHANNEL_ID = '5bcfcf232c625d305951485e';
 
   // Url del middletier
   private rBotURL = 'http://localhost:8080/api/r-bot';
@@ -15,8 +15,8 @@ export class RBotService {
 
   public getResponse(query: string) {
     const data = {
-      id: 1, // Identificador del cliente, TODO: deberia generarse para cada cliente disinto.
-      botId: this.BOT_ID,
+      id: 1, // Identificador del cliente, TODO: deberia generarse para cada cliente distinto.
+      channelId: this.CHANNEL_ID,
       message: query,
       lang: 'es'
     };
