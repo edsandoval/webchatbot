@@ -6,4 +6,9 @@
   <div class="timeform">
     <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="timestamp">at {{message.timestamp | date : 'dd/MM/yyyy' }}</span>
   </div>
+  <div *ngIf="message.buttons" class="container">
+      <div *ngFor="let button of message.buttons" class="row">
+        <button class="btn optionButton" (click)="clickButtonOption(button.payload)">{{button.title}}</button>
+      </div>
+    </div>
 </li>

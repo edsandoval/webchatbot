@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, ViewChildren, QueryList, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ViewChild, ViewChildren, QueryList, ElementRef, ChangeDetectorRef, Output} from '@angular/core';
 
 import { Message } from '../../models';
 import { MessageItemComponent } from '../message-item/message-item.component';
 import { PerfectScrollbarDirective, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'message-list',

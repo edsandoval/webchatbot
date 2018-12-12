@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { EventEmitter } from 'events';
 
 @Injectable()
 export class RBotService {
+
   // Identificador del channel, tiene que estar dado de alta en el middletier.
-  private CHANNEL_ID = '5bcfcf232c625d305951485e';
+  private CHANNEL_ID = '5c0f1739b18d3b2e30801d57';
 
   // Url del middletier
   private rBotURL = 'http://localhost:8080/api/r-bot';

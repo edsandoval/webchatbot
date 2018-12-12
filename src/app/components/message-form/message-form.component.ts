@@ -1,26 +1,36 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { RBotService } from '../../services/rbot.service';
 import { Message } from '../../models';
 import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { MessageService } from '../../services/message.service';
 
 @Component({
   selector: 'message-form',
   templateUrl: './message-form.component.html',
   styleUrls: ['./message-form.component.scss']
 })
-export class MessageFormComponent implements OnInit {
-
+export class MessageFormComponent implements OnInit, OnDestroy {
+  private subscription: Subscription;
   @Input('message')
   private message: Message;
 
   @Input('messages')
   private messages: Message[];
 
-  constructor(private rBotService: RBotService) { }
+  constructor(private rBotService: RBotService, private messageService: MessageService) {
+    this.subscription = messageService.subscribe('OPTION_BUTTON_CLICKED', (payload) => {
+      this.message.content = payload;
+      this.sendMessage();
+    });
+  }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   public sendMessage(): void {
@@ -28,12 +38,18 @@ export class MessageFormComponent implements OnInit {
     this.messages.push(this.message);
 
     this.rBotService.getResponse(this.message.content).subscribe(res => {
-      const rJson: string[] = Array.of(res.text)[0];
+      const rJson: any = Array.of(res.responses)[0];
       console.log('Cant: ' + rJson.length);
       for (let i = 0; i < rJson.length; i++) {
-        console.log('Resp: ' + rJson[i]);
+        console.log('Resp: ' + rJson[i].text);
+        const message = new Message(rJson[i].text, 'assets/images/bot.png', new Date());
+
+        if (rJson[i].buttons) {
+          message.buttons = rJson[i].buttons;
+        }
+
         setTimeout(() => {
-          this.messages.push(new Message(rJson[i], 'assets/images/bot.png', new Date()));
+          this.messages.push(message);
         }, 1000 * (i + 1));
       }
     });

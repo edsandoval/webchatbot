@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import { DialogflowService, RasaService } from '@app/services';
+import { DialogflowService, RasaService, MessageService } from '@app/services';
 import { MessageListComponent, MessageFormComponent, MessageItemComponent } from '@app/components'
 import { RBotService } from './services/rbot.service';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -30,6 +30,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   providers: [
     DialogflowService,
     RBotService,
+    MessageService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
