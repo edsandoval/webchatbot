@@ -42,7 +42,7 @@ export class MessageFormComponent implements OnInit, OnDestroy {
       console.log('Cant: ' + rJson.length);
       for (let i = 0; i < rJson.length; i++) {
         console.log('Resp: ' + rJson[i].text);
-        const message = new Message(rJson[i].text, 'assets/images/bot.png', new Date());
+        const message = new Message(rJson[i].text, 'assets/images/bot.svg', new Date());
 
         if (rJson[i].buttons) {
           message.buttons = rJson[i].buttons;
