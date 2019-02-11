@@ -7,7 +7,7 @@ import { EventEmitter } from 'events';
 export class RBotService {
 
   // Identificador del channel, tiene que estar dado de alta en el middletier.
-  private CHANNEL_ID = '5c0f1739b18d3b2e30801d57';
+  private CHANNEL_ID = '5c609681d2c71a43af457380';
 
   // Url del middletier
   private rBotURL = 'http://localhost:8080/api/r-bot';
