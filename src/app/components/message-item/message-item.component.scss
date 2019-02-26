@@ -18,8 +18,9 @@
 }
 
 .avatar{
-  width: 50px;
-  margin-right: 20px;
+  width: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .optionButton {
@@ -33,4 +34,51 @@
   margin: 4px 2px;
   border-radius: 15px;
   width: 100%;
+}
+
+.botsay {
+  position: relative;
+  /*background: #c7d0d1;*/
+  background: #ffffff;
+  border-radius: .4em;
+  padding: 10px;
+}
+
+.botsay:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 30%;
+	width: 0;
+	height: 0;
+	border: 17px solid transparent;
+  /*border-right-color: #c7d0d1;*/
+  border-right-color: #ffffff;
+	border-left: 0;
+	border-top: 0;
+	margin-top: -8px;
+	margin-left: -17px;
+}
+
+.usersay {
+  position: relative;
+  background: #8dc3dc;
+  border-radius: 0.4em;
+  padding: 10px;
+  color: #ffffff;
+}
+
+.usersay:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 30%;
+  width: 0;
+  height: 0;
+  border: 17px solid transparent;
+  border-left-color: #8dc3dc;
+  border-right: 0;
+  border-bottom: 0;
+  margin-top: -8px;
+  margin-right: -17px;
 }

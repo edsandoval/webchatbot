@@ -3,6 +3,7 @@ import { Message } from '@app/models';
 import { EventEmitter } from 'events';
 import { RBotService } from '../../services/rbot.service';
 import { MessageService } from '../../services/message.service';
+import { MessageType } from '../../models';
 
 @Component({
   selector: 'message-item',
@@ -13,6 +14,8 @@ export class MessageItemComponent implements OnInit {
 
   @Input('message')
   private message: Message;
+  BOT_SAY = MessageType.BOT_SAY;
+  USER_SAY = MessageType.USER_SAY;
 
   constructor(private messageService: MessageService) { }
 

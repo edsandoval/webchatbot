@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { RBotService } from '../../services/rbot.service';
-import { Message } from '../../models';
+import { Message, MessageType } from '../../models';
 import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
@@ -42,7 +42,7 @@ export class MessageFormComponent implements OnInit, OnDestroy {
       console.log('Cant: ' + rJson.length);
       for (let i = 0; i < rJson.length; i++) {
         console.log('Resp: ' + rJson[i].text);
-        const message = new Message(rJson[i].text, 'assets/images/bot.svg', new Date());
+        const message = new Message(rJson[i].text, 'assets/images/bot.svg', new Date(), MessageType.BOT_SAY);
 
         if (rJson[i].buttons) {
           message.buttons = rJson[i].buttons;
@@ -54,7 +54,7 @@ export class MessageFormComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.message = new Message('', 'assets/images/user.png');
+    this.message = new Message('', 'assets/images/user.png', null, MessageType.USER_SAY);
   }
 
 }

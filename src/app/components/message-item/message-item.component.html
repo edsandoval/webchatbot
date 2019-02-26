@@ -1,14 +1,27 @@
-<li class="list-group-item">
-  <img [src]="message.avatar" class="avatar"/>
-  <div class="message">
-    {{message.content}}
+<li class="row text-center mt-2 mb-2">
+  <div class="col-1" *ngIf="message.type === USER_SAY"></div>
+  <div class="col-8 usersay" *ngIf="message.type === USER_SAY">
+    {{ message.content }}
   </div>
-  <div class="timeform">
-    <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="timestamp">at {{message.timestamp | date : 'dd/MM/yyyy' }}</span>
+  <div class="col-2" *ngIf="message.type === USER_SAY">
+    <img [src]="message.avatar" class="avatar" />
   </div>
+
+  <div class="col-2" *ngIf="message.type === BOT_SAY">
+    <img [src]="message.avatar" class="avatar" />
+  </div>
+  <div class="col-8 botsay" *ngIf="message.type === BOT_SAY">
+    {{ message.content }}
+  </div>
+  <div class="col-1"></div>
+
   <div *ngIf="message.buttons" class="container">
-      <div *ngFor="let button of message.buttons" class="row">
-        <button class="btn optionButton" (click)="clickButtonOption(button.payload)">{{button.title}}</button>
-      </div>
+    <div *ngFor="let button of message.buttons" class="row">
+      <button
+        class="btn optionButton"
+        (click)="clickButtonOption(button.payload)">
+        {{ button.title }}
+      </button>
     </div>
+  </div>
 </li>
