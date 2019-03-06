@@ -34,27 +34,29 @@ export class MessageFormComponent implements OnInit, OnDestroy {
   }
 
   public sendMessage(): void {
-    this.message.timestamp = new Date();
-    this.messages.push(this.message);
+    if (this.message.content && this.message.content.trim().length > 0) {
+      this.message.timestamp = new Date();
+      this.messages.push(this.message);
 
-    this.rBotService.getResponse(this.message.content).subscribe(res => {
-      const rJson: any = Array.of(res.responses)[0];
-      console.log('Cant: ' + rJson.length);
-      for (let i = 0; i < rJson.length; i++) {
-        console.log('Resp: ' + rJson[i].text);
-        const message = new Message(rJson[i].text, 'assets/images/bot.svg', new Date(), MessageType.BOT_SAY);
+      this.rBotService.getResponse(this.message.content).subscribe(res => {
+        const rJson: any = Array.of(res.responses)[0];
+        console.log('Cant: ' + rJson.length);
+        for (let i = 0; i < rJson.length; i++) {
+          console.log('Resp: ' + rJson[i].text);
+          const message = new Message(rJson[i].text, 'assets/images/bot.svg', new Date(), MessageType.BOT_SAY);
 
-        if (rJson[i].buttons) {
-          message.buttons = rJson[i].buttons;
+          if (rJson[i].buttons) {
+            message.buttons = rJson[i].buttons;
+          }
+
+          setTimeout(() => {
+            this.messages.push(message);
+          }, 1000 * (i + 1));
         }
+      });
 
-        setTimeout(() => {
-          this.messages.push(message);
-        }, 1000 * (i + 1));
-      }
-    });
-
-    this.message = new Message('', 'assets/images/user.png', null, MessageType.USER_SAY);
+      this.message = new Message('', 'assets/images/user.png', null, MessageType.USER_SAY);
+    }
   }
 
 }

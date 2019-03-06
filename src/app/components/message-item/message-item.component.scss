@@ -40,7 +40,7 @@
   position: relative;
   /*background: #c7d0d1;*/
   background: #ffffff;
-  border-radius: .4em;
+  border-radius: .8em;
   padding: 10px;
 }
 
@@ -56,14 +56,14 @@
   border-right-color: #ffffff;
 	border-left: 0;
 	border-top: 0;
-	margin-top: -8px;
-	margin-left: -17px;
+	margin-top: -4px;
+	margin-left: -8px;
 }
 
 .usersay {
   position: relative;
   background: #8dc3dc;
-  border-radius: 0.4em;
+  border-radius: 0.8em;
   padding: 10px;
   color: #ffffff;
 }
@@ -72,13 +72,13 @@
   content: '';
   position: absolute;
   right: 0;
-  top: 30%;
+  top: 20%;
   width: 0;
   height: 0;
   border: 17px solid transparent;
   border-left-color: #8dc3dc;
   border-right: 0;
   border-bottom: 0;
-  margin-top: -8px;
-  margin-right: -17px;
+  margin-top: -4px;
+  margin-right: -8px;
 }
