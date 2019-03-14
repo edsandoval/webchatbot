@@ -1,4 +1,8 @@
 <div class="chatcontrol">
-  <input type="text" class="form-control chatinput" (keyup.enter)="sendMessage()" [(ngModel)]="message.content"/>
+  <input type="text" class="form-control chatinput" (keyup.enter)="sendMessage()" [(ngModel)]="message.content" placeholder="Escribe tu mensaje..."/>
   <button class="btn btn-success sendbtn" (click)="sendMessage()">Enviar</button>
 </div>
+<div class="text-center footer">
+    <span>Power by <span style="color: orange;">@</span><span style="color: grey;">RBOT</span></span>
+</div>
+
