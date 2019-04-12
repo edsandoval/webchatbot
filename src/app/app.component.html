@@ -1,5 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="chatform">
-  <message-list [messages]="messages"></message-list>
-  <message-form [message]="message" [messages]="messages"></message-form>
+  <div class="card">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+      <message-list [messages]="messages"></message-list>
+    </div>
+    <div class="card-footer text-muted">
+        <message-form [message]="message" [messages]="messages"></message-form>
+    </div>
+  </div>
 </div>
